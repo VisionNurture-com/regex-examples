@@ -1,0 +1,135 @@
+{
+  "measurement": "004-group-replace-matrix",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "input": "納品日は 2026-06-12 です",
+  "pattern": "(\\d{4})-(\\d{2})-(\\d{2})",
+  "cases": [
+    {
+      "intent": "区切りを / にして並べ替える",
+      "engines": {
+        "Python": {
+          "template": "\\3/\\2/\\1",
+          "output": "納品日は 12/06/2026 です"
+        },
+        "sed": {
+          "template": "\\3\\/\\2\\/\\1",
+          "output": "納品日は 12/06/2026 です"
+        },
+        "JavaScript": {
+          "template": "$3/$2/$1",
+          "output": "納品日は 12/06/2026 です"
+        },
+        "Rust": {
+          "template": "$3/$2/$1",
+          "output": "納品日は 12/06/2026 です"
+        }
+      },
+      "agreed": true
+    },
+    {
+      "intent": "日本語を挟む",
+      "engines": {
+        "Python": {
+          "template": "\\1年\\2月\\3日",
+          "output": "納品日は 2026年06月12日 です"
+        },
+        "sed": {
+          "template": "\\1年\\2月\\3日",
+          "output": "納品日は 2026年06月12日 です"
+        },
+        "JavaScript": {
+          "template": "$1年$2月$3日",
+          "output": "納品日は 2026年06月12日 です"
+        },
+        "Rust": {
+          "template": "$1年$2月$3日",
+          "output": "納品日は 2026年06月12日 です"
+        }
+      },
+      "agreed": true
+    },
+    {
+      "intent": "_ で連結する",
+      "engines": {
+        "Python": {
+          "template": "\\1_\\2_\\3",
+          "output": "納品日は 2026_06_12 です"
+        },
+        "sed": {
+          "template": "\\1_\\2_\\3",
+          "output": "納品日は 2026_06_12 です"
+        },
+        "JavaScript": {
+          "template": "$1_$2_$3",
+          "output": "納品日は 2026_06_12 です"
+        },
+        "Rust": {
+          "template": "$1_$2_$3",
+          "output": "納品日は 12 です"
+        }
+      },
+      "agreed": false
+    },
+    {
+      "intent": "英字を直後に続ける",
+      "engines": {
+        "Python": {
+          "template": "\\1abc",
+          "output": "納品日は 2026abc です"
+        },
+        "sed": {
+          "template": "\\1abc",
+          "output": "納品日は 2026abc です"
+        },
+        "JavaScript": {
+          "template": "$1abc",
+          "output": "納品日は 2026abc です"
+        },
+        "Rust": {
+          "template": "$1abc",
+          "output": "納品日は  です"
+        }
+      },
+      "agreed": false
+    },
+    {
+      "intent": "数字を直後に続ける",
+      "engines": {
+        "Python": {
+          "template": "\\10",
+          "output": "エラー: PatternError: invalid group reference 10 at position 1"
+        },
+        "sed": {
+          "template": "\\10",
+          "output": "納品日は 20260 です"
+        },
+        "JavaScript": {
+          "template": "$10",
+          "output": "納品日は 20260 です"
+        },
+        "Rust": {
+          "template": "$10",
+          "output": "納品日は  です"
+        }
+      },
+      "agreed": false
+    }
+  ]
+}

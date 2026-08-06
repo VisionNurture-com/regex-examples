@@ -1,0 +1,197 @@
+{
+  "measurement": "005-feature-matrix",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "engines": [
+    "Python",
+    "JavaScript (Node)",
+    "Go (RE2)",
+    "Rust (regex)",
+    ".NET",
+    "pcre2grep",
+    "grep -E"
+  ],
+  "features": [
+    {
+      "id": "lookahead",
+      "label": "先読み (?=...)",
+      "subject": "foobar",
+      "expected": "foo",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid or unsupported Perl syntax: `(?=`",
+        "Rust (regex)": "ERROR:regex parse error: / foo(?=bar) / ^^^ / error: look-around, including look-ahead and look-behind, is not supported",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "neg_lookahead",
+      "label": "否定先読み (?!...)",
+      "subject": "foobaz",
+      "expected": "foo",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid or unsupported Perl syntax: `(?!`",
+        "Rust (regex)": "ERROR:regex parse error: / foo(?!bar) / ^^^ / error: look-around, including look-ahead and look-behind, is not supported",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "lookbehind_fixed",
+      "label": "後読み（固定長）",
+      "subject": "A123",
+      "expected": "123",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid named capture: `(?<=A)\\d+`",
+        "Rust (regex)": "ERROR:regex parse error: / (?<=A)\\d+ / ^^^^ / error: look-around, including look-ahead and look-behind, is not supported",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "lookbehind_var",
+      "label": "後読み（可変長）",
+      "subject": "1234円",
+      "expected": "円",
+      "results": {
+        "Python": "ERROR:look-behind requires fixed-width pattern",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid named capture: `(?<=\\d+)円`",
+        "Rust (regex)": "ERROR:regex parse error: / (?<=\\d+)円 / ^^^^ / error: look-around, including look-ahead and look-behind, is not supported",
+        ".NET": "OK",
+        "pcre2grep": "ERROR:pcre2grep: Error in command-line regex at offset 0: length of lookbehind assertion is not limited",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "named_group",
+      "label": "名前付きキャプチャ",
+      "subject": "2026-06-12",
+      "expected": "2026",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "OK",
+        "Rust (regex)": "OK",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "atomic",
+      "label": "アトミックグループ（書ける）",
+      "subject": "aaab",
+      "expected": "aaab",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "ERROR:Invalid regular expression: /(?>a+)b/: Invalid group",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid or unsupported Perl syntax: `(?>`",
+        "Rust (regex)": "ERROR:regex parse error: / (?>a+)b / ^ / error: unrecognized flag",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "atomic_semantics",
+      "label": "アトミックグループ（戻らない）",
+      "subject": "aaa",
+      "expected": "（一致しないこと）",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "ERROR:Invalid regular expression: /(?>a+)a/: Invalid group",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid or unsupported Perl syntax: `(?>`",
+        "Rust (regex)": "ERROR:regex parse error: / (?>a+)a / ^ / error: unrecognized flag",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "possessive",
+      "label": "所有量指定子（書ける）",
+      "subject": "aaab",
+      "expected": "aaab",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "ERROR:Invalid regular expression: /a++b/: Nothing to repeat",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid nested repetition operator: `++`",
+        "Rust (regex)": "OK",
+        ".NET": "ERROR:Invalid pattern 'a++b' at offset 3. Nested quantifier '+'.",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "possessive_semantics",
+      "label": "所有量指定子（戻らない）",
+      "subject": "aaa",
+      "expected": "（一致しないこと）",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "ERROR:Invalid regular expression: /a++a/: Nothing to repeat",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid nested repetition operator: `++`",
+        "Rust (regex)": "NG:戻ってしまった（aaa）",
+        ".NET": "ERROR:Invalid pattern 'a++a' at offset 3. Nested quantifier '+'.",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "backref",
+      "label": "後方参照 \\1",
+      "subject": "the the cat",
+      "expected": "the the",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid escape sequence: `\\1`",
+        "Rust (regex)": "ERROR:regex parse error: / (\\w+) \\1 / ^^ / error: backreferences are not supported",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "OK"
+      }
+    },
+    {
+      "id": "uniprop",
+      "label": "Unicode プロパティ \\p{...}",
+      "subject": "漢字テスト",
+      "expected": "漢字",
+      "results": {
+        "Python": "ERROR:bad escape \\p at position 0",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "OK",
+        "Rust (regex)": "OK",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "NG:none"
+      }
+    }
+  ]
+}

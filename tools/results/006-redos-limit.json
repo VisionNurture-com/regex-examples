@@ -1,0 +1,34 @@
+{
+  "measurement": "006-redos-limit",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "pattern": "(a+)+$",
+  "rows": [
+    {
+      "n": 28,
+      "elapsed_sec": 11.47410116699757,
+      "ratio_from_previous": null
+    },
+    {
+      "n": 32,
+      "elapsed_sec": 185.18669383300585,
+      "ratio_from_previous": 16.13953817712971
+    }
+  ]
+}

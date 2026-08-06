@@ -1,0 +1,99 @@
+{
+  "measurement": "004-group-replace-scope",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "input": "納品日は 2026-06-12、出荷日は 2026-07-01 です",
+  "engines": [
+    {
+      "engine": "Python",
+      "default": {
+        "form": "re.sub(...)",
+        "output": "納品日は 12/06/2026、出荷日は 01/07/2026 です",
+        "replaced": 2
+      },
+      "explicit_all": {
+        "form": "既定のまま全件",
+        "output": "納品日は 12/06/2026、出荷日は 01/07/2026 です",
+        "replaced": 2
+      }
+    },
+    {
+      "engine": "JavaScript",
+      "default": {
+        "form": "replace(/.../)",
+        "output": "納品日は 12/06/2026、出荷日は 2026-07-01 です",
+        "replaced": 1
+      },
+      "explicit_all": {
+        "form": "replace(/.../g)",
+        "output": "納品日は 12/06/2026、出荷日は 01/07/2026 です",
+        "replaced": 2
+      }
+    },
+    {
+      "engine": "sed",
+      "default": {
+        "form": "s/.../.../",
+        "output": "納品日は 12/06/2026、出荷日は 2026-07-01 です",
+        "replaced": 1
+      },
+      "explicit_all": {
+        "form": "s/.../.../g",
+        "output": "納品日は 12/06/2026、出荷日は 01/07/2026 です",
+        "replaced": 2
+      }
+    },
+    {
+      "engine": "Rust",
+      "default": {
+        "form": "re.replace(...)",
+        "output": "納品日は 12/06/2026、出荷日は 2026-07-01 です",
+        "replaced": 1
+      },
+      "explicit_all": {
+        "form": "re.replace_all(...)",
+        "output": "納品日は 12/06/2026、出荷日は 01/07/2026 です",
+        "replaced": 2
+      }
+    }
+  ],
+  "subn_count": 2,
+  "count_methods": [
+    {
+      "engine": "Python",
+      "how": "re.subn(...) の 2 つ目の戻り値",
+      "count": 2
+    },
+    {
+      "engine": "JavaScript",
+      "how": "replace(re, 関数) の関数が呼ばれた回数",
+      "count": 2
+    },
+    {
+      "engine": "sed",
+      "how": "仕組みが無い。grep -Eo '[0-9]{4}-[0-9]{2}-[0-9]{2}' | wc -l",
+      "count": 2
+    },
+    {
+      "engine": "Rust",
+      "how": "re.find_iter(s).count()",
+      "count": 2
+    }
+  ]
+}

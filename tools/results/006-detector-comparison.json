@@ -1,0 +1,503 @@
+{
+  "measurement": "006-detector-comparison",
+  "node": "v24.18.0",
+  "growthFactor": 3,
+  "abortSec": 2,
+  "lengths": [
+    10,
+    14,
+    18,
+    22,
+    26
+  ],
+  "rows": [
+    {
+      "pattern": "(a+)+$",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 16.1 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.000009041
+          },
+          {
+            "n": 14,
+            "sec": 0.000132167
+          },
+          {
+            "n": 18,
+            "sec": 0.0022385
+          },
+          {
+            "n": 22,
+            "sec": 0.036102667
+          },
+          {
+            "n": 26,
+            "sec": 0.554715333
+          }
+        ],
+        "worstSec": 0.554715333,
+        "growth": 16.130545185722262
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "(a|a)*$",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 15.9 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.000009875
+          },
+          {
+            "n": 14,
+            "sec": 0.000158959
+          },
+          {
+            "n": 18,
+            "sec": 0.0023185
+          },
+          {
+            "n": 22,
+            "sec": 0.038071958
+          },
+          {
+            "n": 26,
+            "sec": 0.634098708
+          }
+        ],
+        "worstSec": 0.634098708,
+        "growth": 15.85953983511685
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "(x+x+)+y",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 16.3 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.000004417
+          },
+          {
+            "n": 14,
+            "sec": 0.000071458
+          },
+          {
+            "n": 18,
+            "sec": 0.001140583
+          },
+          {
+            "n": 22,
+            "sec": 0.019140625
+          },
+          {
+            "n": 26,
+            "sec": 0.308207208
+          }
+        ],
+        "worstSec": 0.308207208,
+        "growth": 16.277860095383954
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "([a-zA-Z]+)*$",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 17.1 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.00000725
+          },
+          {
+            "n": 14,
+            "sec": 0.000100958
+          },
+          {
+            "n": 18,
+            "sec": 0.001732459
+          },
+          {
+            "n": 22,
+            "sec": 0.03334475
+          },
+          {
+            "n": 26,
+            "sec": 0.507669417
+          }
+        ],
+        "worstSec": 0.507669417,
+        "growth": 17.132211254629492
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "(a*)*b",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 16.0 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.000017334
+          },
+          {
+            "n": 14,
+            "sec": 0.000265958
+          },
+          {
+            "n": 18,
+            "sec": 0.004051458
+          },
+          {
+            "n": 22,
+            "sec": 0.068804125
+          },
+          {
+            "n": 26,
+            "sec": 1.13244625
+          }
+        ],
+        "worstSec": 1.13244625,
+        "growth": 15.987468486719477
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "(\\w+\\s?)*$",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 16.1 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.000008167
+          },
+          {
+            "n": 14,
+            "sec": 0.0001235
+          },
+          {
+            "n": 18,
+            "sec": 0.0019345
+          },
+          {
+            "n": 22,
+            "sec": 0.03332125
+          },
+          {
+            "n": 26,
+            "sec": 0.517354125
+          }
+        ],
+        "worstSec": 0.517354125,
+        "growth": 16.120319786484476
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "^(\\d+)+$",
+      "truth": {
+        "vulnerable": true,
+        "reason": "4 文字あたり 15.7 倍",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 0.00000475
+          },
+          {
+            "n": 14,
+            "sec": 0.000076834
+          },
+          {
+            "n": 18,
+            "sec": 0.00125925
+          },
+          {
+            "n": 22,
+            "sec": 0.01907525
+          },
+          {
+            "n": 26,
+            "sec": 0.299383042
+          }
+        ],
+        "worstSec": 0.299383042,
+        "growth": 15.73588783228347
+      },
+      "verdicts": {
+        "safe-regex": "vulnerable",
+        "redos-detector": "vulnerable",
+        "recheck": "vulnerable"
+      }
+    },
+    {
+      "pattern": "^a+$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 18,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 22,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 26,
+            "sec": 4.1e-8
+          }
+        ],
+        "worstSec": 4.1e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    },
+    {
+      "pattern": "^[^>]*>$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 18,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 22,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 26,
+            "sec": 4.1e-8
+          }
+        ],
+        "worstSec": 4.1e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    },
+    {
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 18,
+            "sec": 4.2e-8
+          },
+          {
+            "n": 22,
+            "sec": 4.2e-8
+          },
+          {
+            "n": 26,
+            "sec": 4.2e-8
+          }
+        ],
+        "worstSec": 4.2e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    },
+    {
+      "pattern": "^[\\w.+-]+@[\\w-]+\\.[\\w.-]+$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 18,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 22,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 26,
+            "sec": 4.1e-8
+          }
+        ],
+        "worstSec": 4.1e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    },
+    {
+      "pattern": "^https?://[\\w./%-]+$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 18,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 22,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 26,
+            "sec": 4.1e-8
+          }
+        ],
+        "worstSec": 4.1e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    },
+    {
+      "pattern": "^\\d{3}-\\d{4}$",
+      "truth": {
+        "vulnerable": false,
+        "reason": "時間が伸びない",
+        "timings": [
+          {
+            "n": 10,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 14,
+            "sec": 0
+          },
+          {
+            "n": 18,
+            "sec": 4.1e-8
+          },
+          {
+            "n": 22,
+            "sec": 0
+          },
+          {
+            "n": 26,
+            "sec": 4.1e-8
+          }
+        ],
+        "worstSec": 4.1e-8,
+        "growth": null
+      },
+      "verdicts": {
+        "safe-regex": "safe",
+        "redos-detector": "safe",
+        "recheck": "safe"
+      }
+    }
+  ],
+  "tally": {
+    "safe-regex": {
+      "hit": 12,
+      "miss": 1,
+      "falseAlarm": 0,
+      "error": 0
+    },
+    "redos-detector": {
+      "hit": 13,
+      "miss": 0,
+      "falseAlarm": 0,
+      "error": 0
+    },
+    "recheck": {
+      "hit": 13,
+      "miss": 0,
+      "falseAlarm": 0,
+      "error": 0
+    }
+  }
+}

@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+node_modules/
+target/
+.DS_Store
+
+# 測定結果は成果物として残すが、環境情報は実行環境ごとに変わるため追跡しない
+tools/results/env.json
+006-redos-safety/node_modules/
+007-dialects-matrix/hyperscan/scale
+006-redos-safety/engines/rust/target/

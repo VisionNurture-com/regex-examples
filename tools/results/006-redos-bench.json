@@ -1,0 +1,129 @@
+{
+  "measurement": "006-redos-bench",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "give_up_sec": 10.0,
+  "rows": [
+    {
+      "n": 16,
+      "variants": {
+        "危険 (a+)+$": {
+          "pattern": "(a+)+$",
+          "elapsed_sec": 0.002689457993255928
+        },
+        "アトミック (?>(a+)+)$": {
+          "pattern": "(?>(a+)+)$",
+          "elapsed_sec": 6.659829523414373e-07
+        },
+        "所有 (a+)++$": {
+          "pattern": "(a+)++$",
+          "elapsed_sec": 4.999747034162283e-07
+        },
+        "安全 a+$": {
+          "pattern": "a+$",
+          "elapsed_sec": 6.250047590583563e-07
+        }
+      }
+    },
+    {
+      "n": 20,
+      "variants": {
+        "危険 (a+)+$": {
+          "pattern": "(a+)+$",
+          "elapsed_sec": 0.0438337079831399
+        },
+        "アトミック (?>(a+)+)$": {
+          "pattern": "(?>(a+)+)$",
+          "elapsed_sec": 8.329807315021753e-07
+        },
+        "所有 (a+)++$": {
+          "pattern": "(a+)++$",
+          "elapsed_sec": 6.250047590583563e-07
+        },
+        "安全 a+$": {
+          "pattern": "a+$",
+          "elapsed_sec": 9.590003173798323e-07
+        }
+      }
+    },
+    {
+      "n": 24,
+      "variants": {
+        "危険 (a+)+$": {
+          "pattern": "(a+)+$",
+          "elapsed_sec": 0.7081775419937912
+        },
+        "アトミック (?>(a+)+)$": {
+          "pattern": "(?>(a+)+)$",
+          "elapsed_sec": 9.590003173798323e-07
+        },
+        "所有 (a+)++$": {
+          "pattern": "(a+)++$",
+          "elapsed_sec": 9.999785106629133e-07
+        },
+        "安全 a+$": {
+          "pattern": "a+$",
+          "elapsed_sec": 1.4159886632114649e-06
+        }
+      }
+    },
+    {
+      "n": 26,
+      "variants": {
+        "危険 (a+)+$": {
+          "pattern": "(a+)+$",
+          "elapsed_sec": 2.8500576250080485
+        },
+        "アトミック (?>(a+)+)$": {
+          "pattern": "(?>(a+)+)$",
+          "elapsed_sec": 1.1249794624745846e-06
+        },
+        "所有 (a+)++$": {
+          "pattern": "(a+)++$",
+          "elapsed_sec": 8.750066626816988e-07
+        },
+        "安全 a+$": {
+          "pattern": "a+$",
+          "elapsed_sec": 1.6250123735517263e-06
+        }
+      }
+    },
+    {
+      "n": 28,
+      "variants": {
+        "危険 (a+)+$": {
+          "pattern": "(a+)+$",
+          "elapsed_sec": 11.431834166985936
+        },
+        "アトミック (?>(a+)+)$": {
+          "pattern": "(?>(a+)+)$",
+          "elapsed_sec": 1.207983586937189e-06
+        },
+        "所有 (a+)++$": {
+          "pattern": "(a+)++$",
+          "elapsed_sec": 9.159848559647799e-07
+        },
+        "安全 a+$": {
+          "pattern": "a+$",
+          "elapsed_sec": 1.7500133253633976e-06
+        }
+      }
+    }
+  ]
+}

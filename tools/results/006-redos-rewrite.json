@@ -1,0 +1,77 @@
+{
+  "measurement": "006-redos-rewrite",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "danger": "^([a-zA-Z]+ ?)+$",
+  "equivalence": {
+    "案A 空白で区切って並べる": {
+      "pattern": "^[a-zA-Z]+( [a-zA-Z]+)*$",
+      "diff_count": 138,
+      "examples": [
+        "a ",
+        "b ",
+        "aa ",
+        "ab "
+      ]
+    },
+    "案B 末尾の空白も許す": {
+      "pattern": "^[a-zA-Z]+( [a-zA-Z]+)* ?$",
+      "diff_count": 0,
+      "examples": []
+    },
+    "案C 文字クラスにまとめる": {
+      "pattern": "^[a-zA-Z ]+$",
+      "diff_count": 576,
+      "examples": [
+        " ",
+        " a",
+        " b",
+        "  "
+      ]
+    }
+  },
+  "chosen": "案B 末尾の空白も許す",
+  "timing": [
+    {
+      "n": 16,
+      "danger_sec": 0.002515125001082197,
+      "flat_sec": 4.5797787606716156e-07
+    },
+    {
+      "n": 20,
+      "danger_sec": 0.03787312502390705,
+      "flat_sec": 4.999747034162283e-07
+    },
+    {
+      "n": 24,
+      "danger_sec": 0.6062725000083447,
+      "flat_sec": 5.829788278788328e-07
+    },
+    {
+      "n": 26,
+      "danger_sec": 2.4442765830026474,
+      "flat_sec": 8.330098353326321e-07
+    },
+    {
+      "n": 28,
+      "danger_sec": 9.84008837500005,
+      "flat_sec": 6.67001586407423e-07
+    }
+  ]
+}

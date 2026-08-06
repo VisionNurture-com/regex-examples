@@ -1,0 +1,101 @@
+{
+  "measurement": "002-formcheck",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "pattern": "[0-9]{3}-[0-9]{4}",
+  "samples": [
+    {
+      "label": "半角そのまま",
+      "value": "123-4567",
+      "results": {
+        "A [0-9] だけ": true,
+        "B \\d で書く": true,
+        "C NFKC + [0-9]": true
+      }
+    },
+    {
+      "label": "全角数字と全角ハイフン",
+      "value": "１２３－４５６７",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": true
+      }
+    },
+    {
+      "label": "全角数字と半角ハイフン",
+      "value": "１２３-４５６７",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": true,
+        "C NFKC + [0-9]": true
+      }
+    },
+    {
+      "label": "ハイフンなし",
+      "value": "1234567",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": false
+      }
+    },
+    {
+      "label": "前後に空白",
+      "value": " 123-4567 ",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": true
+      }
+    },
+    {
+      "label": "丸数字混じり",
+      "value": "①②③-4567",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": true
+      }
+    },
+    {
+      "label": "桁が足りない",
+      "value": "12-345",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": false
+      }
+    },
+    {
+      "label": "英字混じり",
+      "value": "12a-4567",
+      "results": {
+        "A [0-9] だけ": false,
+        "B \\d で書く": false,
+        "C NFKC + [0-9]": false
+      }
+    }
+  ],
+  "counts": {
+    "A [0-9] だけ": 1,
+    "B \\d で書く": 2,
+    "C NFKC + [0-9]": 5
+  }
+}

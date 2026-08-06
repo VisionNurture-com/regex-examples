@@ -1,0 +1,145 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  run-chapters:
+    # 記事は macOS（BSD 系ツール）と Ubuntu（GNU 系ツール）の両方を対象にしている。
+    # 方言の差はここで出るため、CI も両方で回す。
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+
+      - uses: actions/setup-python@v7.0.0
+        with:
+          # アトミックグループと所有量指定子は 3.11 で入った。
+          # それ未満だと 005 / 006 がコンパイルエラーで落ちる。
+          python-version: '3.14'
+
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: 24.18.0
+
+      - name: 環境情報を記録する
+        run: python3 tools/env_report.py
+
+      - name: 001 マッチ過程の出力
+        run: python3 001-metachar-trace/trace.py 'a.c' 'abbc'
+
+      # $ が末尾の改行を許すかどうかは実行系で割れる。割れること自体が成果物なので、
+      # Python と JavaScript で結果が違っても失敗にはしない。
+      - name: 001 $ が指す末尾の範囲
+        run: python3 001-metachar-trace/anchors.py
+
+      - name: 001 ログの段階的な絞り込み
+        run: bash 001-metachar-trace/logfilter.sh
+
+      - name: 002 日本語入力と文字クラス（Python）
+        run: python3 002-charclass-unicode/matrix.py
+
+      # 記事 002 の sec03-2 が載せている表はこちらの出力である。
+      - name: 002 日本語入力と文字クラス（JavaScript）
+        run: node 002-charclass-unicode/matrix.mjs
+
+      - name: 002 入力欄の検証方針の比較
+        run: python3 002-charclass-unicode/formcheck.py
+
+      - name: 003 量指定子の実行時間
+        run: python3 003-quantifier-bench/bench.py
+
+      - name: 003 弱点の切り分け
+        run: python3 003-quantifier-bench/why.py
+
+      - name: 003 取り出す結果の違い
+        run: python3 003-quantifier-bench/extract.py
+
+      - name: 004 置換の書き比べ
+        run: bash 004-group-replace/run.sh
+
+      # 番号の直後に何を置くかで結果が割れる。割れること自体が成果物なので、
+      # 実行系間で差が出ても失敗にはしない。
+      - name: 004 置換テンプレートの対応表
+        run: python3 004-group-replace/matrix.py
+
+      # 既定で何件置換するかは実行系ごとに違う。割れること自体が成果物なので、
+      # 差が出ても失敗にはしない。
+      - name: 004 既定の置換範囲
+        run: python3 004-group-replace/scope.py
+
+      - name: 004 非キャプチャの効果測定
+        run: python3 004-group-replace/bench_capture.py
+
+      - name: 005 機能の対応状況
+        run: python3 005-lookaround-matrix/probe.py
+
+      # 実行系ごとに ○ と × が出ること自体が成果物なので、差が出ても失敗にはしない。
+      # 見つからない実行系の列は matrix.py 側で省略される。
+      - name: 005 実行系横断の対応マトリクス
+        run: python3 005-lookaround-matrix/matrix.py
+
+      # 後読みが通らない実行系が出ること自体が成果物なので、差が出ても失敗にはしない。
+      - name: 005 後読みを持たない実行系への移植
+        run: python3 005-lookaround-matrix/port.py
+
+      - name: 006 ReDoS の再現と回避
+        run: python3 006-redos-safety/bench.py
+
+      - name: 006 入れ子を平らに書き換える
+        run: python3 006-redos-safety/rewrite.py
+
+      # 記事の「手元で試すなら 28 文字まで」という案内の根拠になる測定。
+      # 危険な形を 32 文字まで伸ばすため、このステップだけで数分かかる。
+      - name: 006 28 文字を超えたときの待ち時間
+        run: python3 006-redos-safety/bench.py --limit
+
+      # 検出ツールと ESLint プラグインは npm 依存を使う。
+      # 入れずに走らせると「検査が失敗した」と「依存が無い」を取り違える。
+      - name: 006 検査ツールの依存を入れる
+        run: npm ci
+        working-directory: 006-redos-safety
+
+      - name: 006 検出ツール 3 種の比較
+        run: node 006-redos-safety/detectors/compare.mjs
+
+      - name: 006 ESLint 設定の対照ペア
+        run: bash 006-redos-safety/eslint-config/compare.sh
+
+      # 実行系ごとに桁が違うこと自体が成果物なので、差が出ても失敗にはしない。
+      # 見つからない実行系（Go / .NET / Rust）は compare.sh 側で飛ばす。
+      - name: 006 実行系を替えたときの実行時間
+        run: bash 006-redos-safety/engines/compare.sh
+
+      # 方言の一覧は「○ と × が出ること」自体が成果物なので、
+      # × があっても失敗にはしない（環境ごとに結果が違うのが正しい）。
+      - name: 007 方言の一覧
+        run: bash 007-dialects-matrix/matrix.sh
+
+      # 片方の grep しか無い環境では、見つかったほうだけを表示して終わる。
+      - name: 007 BSD grep と GNU grep の比較
+        run: bash 007-dialects-matrix/bsd-vs-gnu.sh
+
+      # 系統ごとの書き分けは ○ が並ぶのが正しいが、実装差で × が出ても失敗にはしない。
+      # \d の行だけは Python と JavaScript で割れるのが期待どおりの結果である。
+      - name: 007 系統別の書き分け表
+        run: bash 007-dialects-matrix/port.sh
+
+      # Vectorscan と Docker は CI に入れていない。
+      # 道具が無い環境では飛ばして終わるので、ここでは配線の生存確認になる。
+      - name: 007 パターン数を増やしたときのスキャン時間
+        run: bash 007-dialects-matrix/hyperscan/run.sh
+
+      - name: 007 データベース側の正規表現
+        run: bash 007-dialects-matrix/postgres/compare.sh
+
+      - name: 測定結果を成果物として残す
+        uses: actions/upload-artifact@v7.0.1
+        with:
+          name: results-${{ matrix.os }}
+          path: tools/results/

@@ -1,0 +1,10 @@
+2026-08-01T09:15:02 GET  /index.html       200 ref=example.com
+2026-08-01T09:15:44 GET  /docs/regex.html  200 ref=examplexcom
+2026-08-01T09:16:10 POST /api/login        401 ref=example.com
+2026-08-01T09:17:33 GET  /docs/regex.html  200 ref=mail.example.com
+#2026-08-01T09:18:01 GET /health           200 ref=example.com
+2026-08-01T09:19:26 GET  /assets/app.css   304 ref=example.org
+2026-08-01T09:20:07 GET  /docs/index.html  200 ref=example.com
+#2026-08-01T09:20:45 GET /health           200 ref=example.com
+2026-08-01T09:21:19 GET  /api/items        500 ref=example-com.test
+2026-08-01T09:22:58 GET  /index.html       200 ref=example.com

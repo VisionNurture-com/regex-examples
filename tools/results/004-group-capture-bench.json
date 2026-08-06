@@ -1,0 +1,194 @@
+{
+  "measurement": "004-group-capture-bench",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "iterations": 20000,
+  "cases": [
+    {
+      "name": "A 日付の 3 グループ",
+      "subject_length": 18,
+      "variants": {
+        "キャプチャあり": {
+          "pattern": "(\\d{4})-(\\d{2})-(\\d{2})",
+          "groups": 3,
+          "matched": "2026-06-12",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.003013041990925558,
+          "median_sec": 0.003214500000467524,
+          "max_sec": 0.0034259579988429323,
+          "samples_sec": [
+            0.0034259579988429323,
+            0.003345167002407834,
+            0.0032569169998168945,
+            0.003214500000467524,
+            0.003117041997029446,
+            0.003053791995625943,
+            0.003013041990925558
+          ]
+        },
+        "非キャプチャ (?:)": {
+          "pattern": "(?:\\d{4})-(?:\\d{2})-(?:\\d{2})",
+          "groups": 0,
+          "matched": "2026-06-12",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.00298062500951346,
+          "median_sec": 0.0030267920083133504,
+          "max_sec": 0.003284333986812271,
+          "samples_sec": [
+            0.003284333986812271,
+            0.0031532499997410923,
+            0.0031535419984720647,
+            0.0030209160031517968,
+            0.0030267920083133504,
+            0.00298062500951346,
+            0.0030225830123526976
+          ]
+        },
+        "かっこなし": {
+          "pattern": "\\d{4}-\\d{2}-\\d{2}",
+          "groups": 0,
+          "matched": "2026-06-12",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.0028848330111941323,
+          "median_sec": 0.0029686659981962293,
+          "max_sec": 0.003052874992135912,
+          "samples_sec": [
+            0.002983875005156733,
+            0.003052874992135912,
+            0.003028625011211261,
+            0.0029686659981962293,
+            0.002945583008113317,
+            0.0029169159970479086,
+            0.0028848330111941323
+          ]
+        }
+      }
+    },
+    {
+      "name": "B 20 グループ",
+      "subject_length": 23,
+      "variants": {
+        "キャプチャあり": {
+          "pattern": "(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)(x)",
+          "groups": 20,
+          "matched": "xxxxxxxxxxxxxxxxxxxx",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.002430249995086342,
+          "median_sec": 0.002583291003247723,
+          "max_sec": 0.0027864580042660236,
+          "samples_sec": [
+            0.002583291003247723,
+            0.002430249995086342,
+            0.002507375000277534,
+            0.0025416659918846563,
+            0.0026855420001083985,
+            0.00270229100715369,
+            0.0027864580042660236
+          ]
+        },
+        "非キャプチャ (?:)": {
+          "pattern": "(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)(?:x)",
+          "groups": 0,
+          "matched": "xxxxxxxxxxxxxxxxxxxx",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.0011967500031460077,
+          "median_sec": 0.001265207989490591,
+          "max_sec": 0.0014146250032354146,
+          "samples_sec": [
+            0.0011967500031460077,
+            0.0012346250005066395,
+            0.0014146250032354146,
+            0.0013108330022078007,
+            0.001265207989490591,
+            0.00122637499589473,
+            0.0013629579916596413
+          ]
+        },
+        "かっこなし": {
+          "pattern": "xxxxxxxxxxxxxxxxxxxx",
+          "groups": 0,
+          "matched": "xxxxxxxxxxxxxxxxxxxx",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.0012005419994238764,
+          "median_sec": 0.0013753749954048544,
+          "max_sec": 0.003059334005229175,
+          "samples_sec": [
+            0.0013367500068852678,
+            0.001749875009409152,
+            0.001239334000274539,
+            0.0012005419994238764,
+            0.003059334005229175,
+            0.001382542002829723,
+            0.0013753749954048544
+          ]
+        }
+      }
+    },
+    {
+      "name": "C 量指定子の中のグループ",
+      "subject_length": 241,
+      "variants": {
+        "キャプチャあり": {
+          "pattern": "(foo|bar)+",
+          "groups": 1,
+          "matched": "foobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobar",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.03578420799749438,
+          "median_sec": 0.036430709005799145,
+          "max_sec": 0.037162250009714626,
+          "samples_sec": [
+            0.036430709005799145,
+            0.03603358399413992,
+            0.03578420799749438,
+            0.037162250009714626,
+            0.036049916001502424,
+            0.03705095800978597,
+            0.03713262500241399
+          ]
+        },
+        "非キャプチャ (?:)": {
+          "pattern": "(?:foo|bar)+",
+          "groups": 0,
+          "matched": "foobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobarfoobar",
+          "runs": 7,
+          "warmup": 2,
+          "min_sec": 0.02565212499757763,
+          "median_sec": 0.02597487499588169,
+          "max_sec": 0.02757137500157114,
+          "samples_sec": [
+            0.02597487499588169,
+            0.02565212499757763,
+            0.026724374998593703,
+            0.026038708005216904,
+            0.025856292006210424,
+            0.02757137500157114,
+            0.02572395800962113
+          ]
+        }
+      }
+    }
+  ]
+}

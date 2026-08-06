@@ -1,0 +1,85 @@
+{
+  "measurement": "005-lookaround-port",
+  "env": {
+    "os": {
+      "system": "Darwin",
+      "release": "25.5.0",
+      "machine": "arm64"
+    },
+    "cpu": "arm",
+    "runtimes": {
+      "python": "3.14.5",
+      "node": "v24.18.0",
+      "go": "go version go1.26.5 darwin/arm64",
+      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
+      "dotnet": "10.0.302",
+      "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
+      "sed": "/usr/bin/sed: illegal option -- -",
+      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+    }
+  },
+  "python": {
+    "肯定後読み": {
+      "pattern": "(?<=¥)\\d+",
+      "found": [
+        "1200"
+      ]
+    },
+    "キャプチャ": {
+      "pattern": "¥(\\d+)",
+      "found": [
+        "1200"
+      ]
+    },
+    "否定後読み": {
+      "pattern": "(?<!¥)\\d+",
+      "found": [
+        "200",
+        "300"
+      ]
+    },
+    "境界つき": {
+      "pattern": "(?<!¥)\\b\\d+",
+      "found": [
+        "300"
+      ]
+    }
+  },
+  "engines": [
+    "Python",
+    "JavaScript (Node)",
+    "Go (RE2)",
+    "Rust (regex)",
+    ".NET",
+    "pcre2grep",
+    "grep -E"
+  ],
+  "features": [
+    {
+      "id": "lookbehind",
+      "label": "後読み (?<=¥)\\d+",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "ERROR:error parsing regexp: invalid named capture: `(?<=¥)\\d+`",
+        "Rust (regex)": "ERROR:regex parse error: / (?<=¥)\\d+ / ^^^^ / error: look-around, including look-ahead and look-behind, is not supported",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "ERROR:grep: repetition-operator operand invalid"
+      }
+    },
+    {
+      "id": "captured",
+      "label": "キャプチャ ¥(\\d+)",
+      "results": {
+        "Python": "OK",
+        "JavaScript (Node)": "OK",
+        "Go (RE2)": "OK",
+        "Rust (regex)": "OK",
+        ".NET": "OK",
+        "pcre2grep": "OK",
+        "grep -E": "OK"
+      }
+    }
+  ]
+}
