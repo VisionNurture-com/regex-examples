@@ -3,19 +3,21 @@
   "env": {
     "os": {
       "system": "Darwin",
-      "release": "25.5.0",
+      "release": "25.6.0",
       "machine": "arm64"
     },
     "cpu": "arm",
     "runtimes": {
-      "python": "3.14.5",
-      "node": "v24.18.0",
-      "go": "go version go1.26.5 darwin/arm64",
-      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
-      "dotnet": "10.0.302",
+      "python": "3.14.7",
+      "node": "v24.19.0",
+      "go": "go version go1.27.1 darwin/arm64",
+      "rustc": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)",
+      "dotnet": "10.0.400",
+      "perl": "v5.34.1",
+      "ruby": "ruby 3.4.10 (2026-06-30 revision 2b0b7728dc) +PRISM [arm64-darwin25]",
       "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
       "sed": "/usr/bin/sed: illegal option -- -",
-      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+      "pcre2grep": "pcre2grep version 10.48 2026-08-31"
     }
   },
   "give_up_sec": 10.0,
@@ -25,19 +27,19 @@
       "variants": {
         "危険 (a+)+$": {
           "pattern": "(a+)+$",
-          "elapsed_sec": 0.002689457993255928
+          "elapsed_sec": 0.00249670899938792
         },
         "アトミック (?>(a+)+)$": {
           "pattern": "(?>(a+)+)$",
-          "elapsed_sec": 6.659829523414373e-07
+          "elapsed_sec": 5.829970177728683e-07
         },
         "所有 (a+)++$": {
           "pattern": "(a+)++$",
-          "elapsed_sec": 4.999747034162283e-07
+          "elapsed_sec": 4.579997039400041e-07
         },
         "安全 a+$": {
           "pattern": "a+$",
-          "elapsed_sec": 6.250047590583563e-07
+          "elapsed_sec": 5.420006345957518e-07
         }
       }
     },
@@ -46,19 +48,19 @@
       "variants": {
         "危険 (a+)+$": {
           "pattern": "(a+)+$",
-          "elapsed_sec": 0.0438337079831399
+          "elapsed_sec": 0.0409778749999532
         },
         "アトミック (?>(a+)+)$": {
           "pattern": "(?>(a+)+)$",
-          "elapsed_sec": 8.329807315021753e-07
+          "elapsed_sec": 1.0410003596916795e-06
         },
         "所有 (a+)++$": {
           "pattern": "(a+)++$",
-          "elapsed_sec": 6.250047590583563e-07
+          "elapsed_sec": 8.329989213962108e-07
         },
         "安全 a+$": {
           "pattern": "a+$",
-          "elapsed_sec": 9.590003173798323e-07
+          "elapsed_sec": 7.919989002402872e-07
         }
       }
     },
@@ -67,19 +69,19 @@
       "variants": {
         "危険 (a+)+$": {
           "pattern": "(a+)+$",
-          "elapsed_sec": 0.7081775419937912
+          "elapsed_sec": 0.654829332997906
         },
         "アトミック (?>(a+)+)$": {
           "pattern": "(?>(a+)+)$",
-          "elapsed_sec": 9.590003173798323e-07
+          "elapsed_sec": 8.749993867240846e-07
         },
         "所有 (a+)++$": {
           "pattern": "(a+)++$",
-          "elapsed_sec": 9.999785106629133e-07
+          "elapsed_sec": 6.659975042566657e-07
         },
         "安全 a+$": {
           "pattern": "a+$",
-          "elapsed_sec": 1.4159886632114649e-06
+          "elapsed_sec": 1.0829971870407462e-06
         }
       }
     },
@@ -88,19 +90,19 @@
       "variants": {
         "危険 (a+)+$": {
           "pattern": "(a+)+$",
-          "elapsed_sec": 2.8500576250080485
+          "elapsed_sec": 2.6640469580015633
         },
         "アトミック (?>(a+)+)$": {
           "pattern": "(?>(a+)+)$",
-          "elapsed_sec": 1.1249794624745846e-06
+          "elapsed_sec": 9.170034900307655e-07
         },
         "所有 (a+)++$": {
           "pattern": "(a+)++$",
-          "elapsed_sec": 8.750066626816988e-07
+          "elapsed_sec": 7.079979695845395e-07
         },
         "安全 a+$": {
           "pattern": "a+$",
-          "elapsed_sec": 1.6250123735517263e-06
+          "elapsed_sec": 1.2499986041802913e-06
         }
       }
     },
@@ -109,19 +111,19 @@
       "variants": {
         "危険 (a+)+$": {
           "pattern": "(a+)+$",
-          "elapsed_sec": 11.431834166985936
+          "elapsed_sec": 10.587430249997851
         },
         "アトミック (?>(a+)+)$": {
           "pattern": "(?>(a+)+)$",
-          "elapsed_sec": 1.207983586937189e-06
+          "elapsed_sec": 1.0000003385357559e-06
         },
         "所有 (a+)++$": {
           "pattern": "(a+)++$",
-          "elapsed_sec": 9.159848559647799e-07
+          "elapsed_sec": 7.90998456068337e-07
         },
         "安全 a+$": {
           "pattern": "a+$",
-          "elapsed_sec": 1.7500133253633976e-06
+          "elapsed_sec": 1.4159995771478862e-06
         }
       }
     }

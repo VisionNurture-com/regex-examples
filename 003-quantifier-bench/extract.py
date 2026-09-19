@@ -5,8 +5,8 @@ bench.py と why.py は 1 か所だけマッチさせて速さを測った。実
 1 行に同じ形のフィールドが複数並ぶ。そこでは速さより先に **取り出した結果
 そのもの** が書き方で変わる。
 
-  実験 C: 引用符で囲まれた 3 つのフィールドを取り出す（貪欲 / 最短 / 否定クラス）
-  実験 D: 回数を決め打つ {n} だけでは足りない場合を見る
+  実験 D: 引用符で囲まれた 3 つのフィールドを取り出す（貪欲 / 最短 / 否定クラス）
+  実験 E: 回数を決め打つ {n} だけでは足りない場合を見る
 """
 
 import re
@@ -36,7 +36,7 @@ def build_log(rows: int) -> str:
 
 
 def experiment_c(log: str) -> dict:
-    print(f"■ 実験 C: {ROWS:,} 行から引用符フィールドを取り出す")
+    print(f"■ 実験 D: {ROWS:,} 行から引用符フィールドを取り出す")
     print(f"  1 行に 3 つあるので、正しく取れれば {ROWS * 3:,} 件になります。\n")
     first_line = log.split("\n", 1)[0]
     rows = {}
@@ -60,7 +60,7 @@ def experiment_c(log: str) -> dict:
 
 
 def experiment_d(log: str) -> dict:
-    print("■ 実験 D: ステータスコード 200 だけを取り出したい")
+    print("■ 実験 E: ステータスコード 200 だけを取り出したい")
     first_line = log.split("\n", 1)[0]
     probes = {
         "回数を指定しない \\d+": r"\d+",

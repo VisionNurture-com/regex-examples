@@ -3,32 +3,34 @@
   "env": {
     "os": {
       "system": "Darwin",
-      "release": "25.5.0",
+      "release": "25.6.0",
       "machine": "arm64"
     },
     "cpu": "arm",
     "runtimes": {
-      "python": "3.14.5",
-      "node": "v24.18.0",
-      "go": "go version go1.26.5 darwin/arm64",
-      "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14) (Homebrew)",
-      "dotnet": "10.0.302",
+      "python": "3.14.7",
+      "node": "v24.19.0",
+      "go": "go version go1.27.1 darwin/arm64",
+      "rustc": "rustc 1.98.1 (48a229cea 2026-09-01) (Homebrew)",
+      "dotnet": "10.0.400",
+      "perl": "v5.34.1",
+      "ruby": "ruby 3.4.10 (2026-06-30 revision 2b0b7728dc) +PRISM [arm64-darwin25]",
       "grep": "grep (BSD grep, GNU compatible) 2.6.0-FreeBSD",
       "sed": "/usr/bin/sed: illegal option -- -",
-      "pcre2grep": "pcre2grep version 10.47 2025-10-21"
+      "pcre2grep": "pcre2grep version 10.48 2026-08-31"
     }
   },
   "pattern": "(a+)+$",
   "rows": [
     {
       "n": 28,
-      "elapsed_sec": 11.47410116699757,
+      "elapsed_sec": 10.658918624998478,
       "ratio_from_previous": null
     },
     {
       "n": 32,
-      "elapsed_sec": 185.18669383300585,
-      "ratio_from_previous": 16.13953817712971
+      "elapsed_sec": 173.32809754199843,
+      "ratio_from_previous": 16.261321025145097
     }
   ]
 }

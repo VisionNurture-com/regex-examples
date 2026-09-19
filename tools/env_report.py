@@ -41,6 +41,8 @@ def collect() -> dict:
             "go": cmd_version(["go", "version"]),
             "rustc": cmd_version(["rustc", "--version"]),
             "dotnet": cmd_version(["dotnet", "--version"]),
+            "perl": cmd_version(["perl", "-e", "print $^V"]),
+            "ruby": cmd_version(["ruby", "--version"]),
             # macOS の素の grep は環境によって別実装に差し替わっていることがあるため
             # 記事が対象とするシステム grep をフルパスで見る
             "grep": cmd_version(["/usr/bin/grep", "--version"]),
